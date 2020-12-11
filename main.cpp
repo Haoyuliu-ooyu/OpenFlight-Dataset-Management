@@ -1,10 +1,10 @@
 #include "edge.h"
 #include "graph.h"
 #include "algorithms.h"
-#include <filesystem>
 
 
 int main() {
+  std::cout << std::endl;
   // initialize an empty graph
   Graph g_ = Graph(true, true);
   // map that map id of airport to its full name
@@ -49,7 +49,8 @@ int main() {
           another_choice = true;
         } else {
           // read filename of airport data and check if file exists
-          if (!std::__fs::filesystem::exists(airport_data)) {
+          ifstream f(airport_data.c_str());
+          if (!f.good()) {
             std::cout << std::endl;
             std::cout << "file does not exist. Please try again" << std::endl;
             continue;
@@ -58,7 +59,8 @@ int main() {
           std::cout << std::endl;
           std::cout << "Please enter the filename of the route data (also include folder name if in a different folder)" << std::endl;
           std::getline(std::cin >> std::ws, route_data);
-          if (!std::__fs::filesystem::exists(route_data)) {
+          ifstream f1(route_data.c_str());
+          if (!f1.good()) {
             std::cout << std::endl;
             std::cout << "file does not exist. Please try again" << std::endl;
             continue;
